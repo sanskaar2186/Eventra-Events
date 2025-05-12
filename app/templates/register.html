@@ -1,0 +1,166 @@
+
+<!OCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>No Plans, Just Planes - Login</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('{{ url_for('static', filename='img/login_background.jpg') }}') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #000;
+    }
+
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      padding: 70px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      height: 28px;
+      margin-right: 8px;
+    }
+
+    .headline {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .subtext {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+     
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .signup-btn {
+      width: 100%;
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-btn:hover {
+      background-color: #e65c00;
+    }
+
+    .login {
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .login a {
+      color: #ff6600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    .image{
+      width: 30px;
+      border-radius: 40px;
+    } 
+
+    .signup a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="headline">Create an account<br/>Now</div>
+    <div class="subtext">Add Fun to your schedule <div>
+    <div class="logo">
+
+      <h2 style="margin: 0; font-size: 18px;">Eventra Events</h2>
+    </div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <p class="error">{{ messages[0] }}</p>
+      {% endif %}
+    {% endwith %}
+    <form>
+      <input type="text" name="Username" placeholder="Username" required />
+      <input type="email" name="email" placeholder="Email ID" required />
+      <div class="password-wrapper">
+        <input type="password" name="password" id="password" placeholder="Password" required />
+        <span class="material-icons toggle-password" onclick="togglePassword()" id="eyeIcon">visibility</span>
+      </div>
+      <div class="options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#" style="text-decoration: none; color: #555;">Forgot Password?</a>
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+    <div class="login">
+      Already have an account? <a href="{{ url_for('login') }}">Log in!</a>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const pwdField = document.getElementById("password");
+      if (pwdField.type === "password") {
+        pwdField.type = "text";
+      } else {
+        pwdField.type = "password";
+      }
+    }
+  </script>
+</body>
+</html>
